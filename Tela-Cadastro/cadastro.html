@@ -47,7 +47,7 @@
                     <label for="senha">Confirmar Senha</label>
                     <input type="text" name="senha" id="confirmarSenha">
 
-                    <button class="btn" onclick="enviar()">Cadastrar</button>
+                    <button class="btn" onclick="cadastrar()">Cadastrar</button>
                     </div>
                 </section>
             </main>
@@ -58,13 +58,17 @@
 </html>
 
     <script>
-        function enviar(){
+        function cadastrar(){
             let nomeUser = nome.value
             let emailUser = email.value
             let senhaUser = senha.value
             let confirmarSehna = confirmar-senha.value
             console.log(nomeUser,emailUser,senhaUser)
-
+            // Validação de campos vazios
+            if(nomeUser != '' || emailUser != '' || senhaUser != ''){
+                alert('Nome de usuário vazio')
+            }
+           
 
         }
     </script>
