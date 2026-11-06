@@ -34,7 +34,7 @@ li{
 }
 
 .background{
-    background-image: url('./assets/birmingham-museums-trust-KfRUve5NtO8-unsplash.jpg');
+    background-image: url('../assets/imgs/birmingham-museums-trust-KfRUve5NtO8-unsplash.jpg');
     background-size: cover; 
     height: 100vh;
     padding: 50px;
