@@ -3,68 +3,137 @@
     margin: 0;
     box-sizing: border-box;
 }
+:root{
+    --cor-fonte:  rgb(12, 12, 12);
+}
 html{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Montserrat;
 }
 button, select{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Montserrat;
+}
+.btn{
+    padding: 10px 20px;
+    width: 140px;
+    border: solid 1px white;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 6px;
+    color: white;
+    background-color: rgb(29, 29, 29);
+}
+.btn-simples{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: underline;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 6px;
+    color: var(--cor-fonte);
 }
 /* Navbar */
 ul{
     list-style: none;
 }
 li{
-    font-size: 18px;
+    font-size: 16px;
 }
-.navbar ul{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-.nome-nav{
-    font-weight: 800;
-    font-size: 24px;
-    letter-spacing: 3px;
+.site-title{
+    font-size: 28px;
+    letter-spacing: 1px;
 }
 .navbar{
     display: flex;
-    padding: 25px;
+    height: 12vh;
+    padding: 20px;
     align-items: center;
     justify-content: space-between;
 }
-
-.background{
-    background-image: url('./imgs/premium_photo-1664197369827-378ba152d1af.avif');
-    background-size: cover; 
-    height: 80vh;
-    padding: 50px;
+.navbar ul{
+    display: flex;
+    gap: 25px;
+    align-items: center;
 }
 
+/* Conteúdo da Home */
+.badge{
+    background-color: white;
+    color: var(--cor-fonte);
+    padding: 3px 24px;
+    font-weight: 600;
+    border-radius: 14px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.background{
+    background-image: 
+    /* Aplica um gradiente na imagem */
+    linear-gradient(to right, rgba(255, 255, 255, 0.616), rgba(0, 0, 0, 0.493)),
+    url('../assets/imgs/premium_photo-1664197369827-378ba152d1af.avif');
+    background-size: cover; 
+    height: 88vh;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.background-content{
+}
 .background p{
-    color: white;
+    color: var(--cor-fonte);
     font-size: 20px;
+    width: 400px;
 }
 .title-background{
-    color: white;
+    margin-top: 15px;
+    color: var(--cor-fonte);
     font-size: 5rem;
 }
 
-.more{
+.more-button{
     margin-top: 40px;
-    padding: 10px 20px;
-    background-color: aliceblue;
-    border: solid rgb(32, 32, 32) 1px;
-    font-weight: 800;
-    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 25px;
+    color: white;
+    background-color: rgb(12, 12, 12);
+    border: none;
+    font-weight: 400;
+    border-radius: 4px;
 }
 
-.btn{
-    padding: 10px 20px;
-    width: 110px;
-    border: solid 1px white;
+/* Seção Fundamentos */
+.fundamentos{
+    padding: 6rem 2.5rem;
+}
+.fundamentos span{
+    text-transform: uppercase;
+    color: rgb(107, 107, 107);
+}
+
+.fundamentos-title{
+    margin-bottom: 70px;
+}
+.fundamentos-container{
     display: flex;
-    justify-content: center;
-    font-size: 18px;
-    color: white;
-    background-color: rgb(29, 29, 29);
+    gap: 10px;
+}
+.card-fundamento{
+    padding: 30px;
+    border: 1px solid darkgray;
+    border-radius: 6px;
+    background-color: white;
+}
+.card-fundamento h2{
+    margin-top: 15px;
+}
+.card-fundamento:hover{
+    scale: 1.1;
+    cursor: pointer;
+    transition: 0.3s ease;
 }

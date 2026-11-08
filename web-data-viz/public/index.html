@@ -4,32 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Individual</title>
+    <!--Importa icones do Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <main>
         <nav class="navbar">
-                <div class="nome-nav">THIAGO</div>
-            <ul>
-                <li><a>Home</a></li>  
-                <li><a>Sobre</a></li>  
-                <li><a>Contato</a></li>   
-                <button class="btn">Cadastrar</button>
-                <button class="btn">Login</button>
-            </ul>
-           
+            <div class="site-title">drawing.</div>
+        <ul>
+            <li><a>Home</a></li>  
+            <li><a>Sobre</a></li>  
+            <li><a>Contato</a></li>   
+            <li><a>|</a></li> 
+            <button class="btn-simples">Entrar</button>
+            <button class="btn">Cadastre-se</button>
+        </ul> 
         </nav>
+
             <section class="background">
-                <h1 class="title-background">
-                    A arte de <br> - Desenhar 
-                </h1>
-                    <p>Um site sobre desenho </p>
-                    <button class="more">CONHEÇA MAIS SOBRE DESENHO</button>
+                <div class="background-content">
+                    <span class="badge">Entenda os fundamentos do desenho</span>
+                    <h1 class="title-background">
+                        A arte de Desenhar 
+                    </h1>
+                    <p>Aprenda os fundamentos e descubra seu jeito de ver o mundo. 
+                        Sem pressa, sem precisar de um dom.</p>
+                    <button class="more-button">
+                        Conheça mais sobre desenho
+                        <i class="fa-solid fa-pencil"></i>
+                    </button>
+                </div>
             </section>
             
+            <section class="fundamentos">
+                <span>Por onde começar?</span>
+                <h1 class="fundamentos-title">Fundamentos do Desenho</h1>
+                
+                <div class="fundamentos-container">
+                    <div class="card-fundamento">
+                        <div style="display: flex; justify-content: space-between;align-items: center;">
+                            <i class="fa-solid fa-pen-nib fa-xl"></i> 
+                            <span>01</span>  
+                        </div>
+                        
+                        <h2>Linha</h2>
+                        <p>Treine os principais tipos de linha para criar qualquer desenho</p>
+                    </div>
+
+                    <div class="card-fundamento">
+                        <i class="fa-solid fa-shapes fa-xl"></i>
+                        <h2>Forma</h2>
+                        <p>Treine os principais tipos de linha para criar qualquer desenho</p>
+                    </div>
+
+                    <div class="card-fundamento">
+                        <i class="fa-solid fa-lightbulb fa-xl"></i>
+                        <h2>Luz e Sombra</h2>
+                        <p>Treine os principais tipos de linha para criar qualquer desenho</p>
+                    </div>
+
+                    <div class="card-fundamento">
+                        <i class="fa-solid fa-cubes fa-xl"></i>
+
+                        <h2>Perspectiva</h2>
+                        <p>Treine os principais tipos de linha para criar qualquer desenho</p>
+                    </div>
+                </div>
+            </section>
 
 
 
