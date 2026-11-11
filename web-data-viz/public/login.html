@@ -64,9 +64,6 @@
 </html>
 
     <script>
-        function mostrarMensagem(){
-             msg.style.display = 'block'
-        }
         let msg = document.querySelector('.mensagem')
         function cadastrar(){
             let emailUser = email.value
@@ -99,13 +96,19 @@
            }).then( response => {
                 if(response.ok){
                     setTimeout(() => msg.style.display = 'block', 1500)
-                   
-                    return response.json()
+                    response.json()
+                    .then( json => {
+                        console.log(json)
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                    })
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 2500);
                 }else{
                     console.log(response)
                 }
            })
-           .then( res => console.log(res.mensagem))
                     
         }
     </script>

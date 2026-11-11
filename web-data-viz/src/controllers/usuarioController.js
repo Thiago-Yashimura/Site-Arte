@@ -10,7 +10,7 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-
+        // Essa função de model faz uma consulta no banco e retorna um array de objetos
         usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
@@ -18,8 +18,9 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-                    // Código de model que procura pela tabela aquario
+                        console.log('resultado da query é um array de objetos ->',resultadoAutenticar);
+                        console.log('Nome usuário: ', resultadoAutenticar[0].nome)
+        // Código de model que procura pela tabela aquario
                         // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
                         //     .then((resultadoAquarios) => {
                         //         if (resultadoAquarios.length > 0) {
@@ -34,7 +35,11 @@ function autenticar(req, res) {
                         //             res.status(204).json({ aquarios: [] });
                         //         }
                         //     })
-                        res.status(200).json({ mensagem:'Login efetuado com sucesso!' })
+                        res.status(200).json({ 
+                            mensagem:'Login efetuado com sucesso!',
+                            nome: resultadoAutenticar[0].nome,
+                            email: resultadoAutenticar[0].email
+                        })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
