@@ -4,17 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+     <!--Importa icones do Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!--Importa a biblioteca Chart.js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
 </head>
 <body>
     <main>
         <section class="menu-lateral">
-            <div class="profile"></div>
+        <div class="menu-content">
+            <div>
+            <span class="logo">drawing.</span>
+            <p>Seu espaço</p>
+            </div>
+            
+        
+           
+       
+            <div class="menu-buttons">
+                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>
+                <button class="btn-menu"><i class="fa-regular fa-images fa-lg"></i>Desenhos</button>
+                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>    
+            </div>
+        </div>
+
+            <div class="menu-container">
+                <hr>
             <p class="username">Olá usuário01</p>
+        </div>
+
         </section>
         <section class="conteudo">
-            <h1>Painel </h1>
+            <h1>Bem-vindo de volta usuário01</h1>
+            <p>Bem-vindo, artista! Confira os resultados do quiz.</p>
+            
+            <div class="grafico">
+                <canvas id="dashboard-estilos"></canvas>
+            </div>
+
         </section>
     </main>
 </body>
 </html>
+<script>
+  const ctx = document.getElementById('dashboard-estilos');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Anime', 'Realismo', 'Pixel Art', 'Cartoon', 'Graffiti', 'Caricatura'],
+      datasets: [{
+        label: 'Estilos mais votados',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+ 
