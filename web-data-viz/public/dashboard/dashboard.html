@@ -9,13 +9,15 @@
     <!--Importa a biblioteca Chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="../js/sessao.js"></script>
+
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
    
 </head>
-<body>
+<body onload="validarSessao()">
     <main>
         <section class="menu-lateral">
         <div class="menu-content">
@@ -33,12 +35,12 @@
 
             <div class="menu-container">
                 <hr>
-            <p class="username">Olá usuário01</p>
+            <p class="username">Olá <span id="b_usuario"></span></p>
         </div>
 
         </section>
         <section class="conteudo">
-            <h1>Bem-vindo de volta usuário01</h1>
+            <h1>Bem-vindo de volta <span id="b_usuario2"></span></h1>
             <p>Bem-vindo, artista! Confira os resultados do quiz.</p>
             
             <div class="grafico">

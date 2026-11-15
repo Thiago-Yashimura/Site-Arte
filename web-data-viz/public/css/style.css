@@ -41,6 +41,20 @@ ul{
 li{
     font-size: 16px;
 }
+
+li::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* Começa invisível (largura zero) */
+  height: 3px; /* Espessura da barra */
+  background-color: #3498db; /* Cor da barra */
+  transition: width 0.3s ease; /* Animação suave */
+}
+li:hover::after {
+  width: 100%; /* Expande até 100% ao passar o mouse */
+}
 .site-title{
     font-size: 28px;
     letter-spacing: 1px;

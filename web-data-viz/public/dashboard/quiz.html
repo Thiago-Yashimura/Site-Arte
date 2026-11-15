@@ -4,13 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Importa icones do Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!--Importa a biblioteca Chart.js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--Importa a função de validar Sessão-->
+    <script src="../js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
     <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/quiz.css">
 </head>
 
 
-<body onload="onloadEsconder()">
-    <div id="pontuacaoEJogo">
+<body onload="onloadEsconder(), validarSessao()">
+    <main>
+        <section class="menu-lateral">
+        <div class="menu-content">
+          <div>
+          <span class="logo">drawing.</span>
+          <p>Seu espaço</p>
+        </div>
+            
+            <div class="menu-buttons">
+                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>
+                <button class="btn-menu"><i class="fa-regular fa-images fa-lg"></i>Desenhos</button>
+                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>    
+            </div>
+        </div>
+
+            <div class="menu-container">
+                <hr>
+            <p class="username">Olá <span id="b_usuario"></span></p>
+        </div>
+
+        </section>
+        <section class="conteudo">
+            <h1>Bem-vindo de volta <span id="b_usuario2"></span></h1>
+            <p>Bem-vindo, artista! Confira os resultados do quiz.</p>
+
+        <!--Quiz -->  
+        <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
@@ -69,48 +107,74 @@
 
         </div>
     </div>
+        </section>
+
+    </main>
+   
 </body>
 
 </html>
 <script>
     const listaDeQuestoes = [
 
-        {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
-        },
+    {
+        pergunta: "Qual tipo de desenho você prefere?",
 
-        {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
-        },
+        alternativaA: "Traços japoneses",
+        alternativaB: "Formas geométricas",
+        alternativaC: "Aparência de fotografia",
+        alternativaD: "Desenhos com pixels",
 
-        {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+        estilos: {
+            alternativaA: "Mangá",
+            alternativaB: "Cubismo",
+            alternativaC: "Realismo",
+            alternativaD: "Pixel Art"
         }
+    },
 
-    ]
+    {
+        pergunta: "Qual cenário você prefere desenhar?",
+
+        alternativaA: "Personagens de anime",
+        alternativaB: "Construções geométricas",
+        alternativaC: "Paisagens realistas",
+        alternativaD: "Cenários de jogos antigos",
+
+        estilos: {
+            alternativaA: "Mangá",
+            alternativaB: "Cubismo",
+            alternativaC: "Realismo",
+            alternativaD: "Pixel Art"
+        }
+    },
+
+    {
+        pergunta: "Qual técnica mais chama sua atenção?",
+
+        alternativaA: "Expressões e movimentos",
+        alternativaB: "Formas e perspectivas",
+        alternativaC: "Luz e sombras",
+        alternativaD: "Pixels e pequenos blocos",
+
+        estilos: {
+            alternativaA: "Mangá",
+            alternativaB: "Cubismo",
+            alternativaC: "Realismo",
+            alternativaD: "Pixel Art"
+        }
+    }
+]
 
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
+    let pontuacaoEstilos = {
+        "Mangá": 0,
+        "Cubismo": 0,
+        "Realismo": 0,
+        "Pixel Art": 0
+    };
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -166,7 +230,7 @@
 
             habilitarAlternativas(false)
 
-            checarResposta()
+            contabilizarResposta()
         }
     }
 
@@ -181,62 +245,56 @@
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
 
-        desmarcarRadioButtons()
+    btnProx.disabled = true;
+    btnSubmeter.disabled = false;
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else {
-            finalizarJogo()
-        }
-        limparCoresBackgroundOpcoes()
+    desmarcarRadioButtons();
+
+    if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+
+        numeroDaQuestaoAtual++;
+
+        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
+
+    } else {
+
+        finalizarJogo();
+
     }
+
+}
 
     function tentarNovamente() {
         // atualiza a página
         window.location.reload()
     }
 
-    function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+    function contabilizarResposta() {
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+    const options = document.getElementsByName("option");
 
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
-            }
-        })
+    let respostaSelecionada = null;
 
-        // verifica se resposta assinalada é correta
-        options.forEach((option) => {
-            if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
-            } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
+    options.forEach((option) => {
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
-            }
-        })
-    }
+        if (option.checked) {
+            respostaSelecionada = option.value;
+        }
+
+    });
+
+    // Descobre qual estilo pertence à alternativa escolhida
+    let estiloEscolhido = questaoAtual.estilos[respostaSelecionada];
+
+    // Adiciona um ponto ao estilo
+    pontuacaoEstilos[estiloEscolhido]++;
+
+    console.log(pontuacaoEstilos);
+
+}
 
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
@@ -254,36 +312,47 @@
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
+    let maiorPontuacao = Math.max(
+        ...Object.values(pontuacaoEstilos)
+    );
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+    let estiloVencedor = Object.keys(pontuacaoEstilos).find(
+        estilo => pontuacaoEstilos[estilo] === maiorPontuacao
+    );
 
+    document.getElementById("msgFinal").innerHTML =
+        "Seu estilo artístico é: " + estiloVencedor;
 
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+    btnProx.disabled = true;
+    btnSubmeter.disabled = true;
+    btnTentarNovamente.disabled = false;
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+    console.log("Resultado: " + estiloVencedor);
+    enviarResultado(estiloVencedor)
+}
 
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
-
+    function enviarResultado(estilo){
+        fetch('/quiz/salvar', {
+            method: 'POST',
+            headers: {'Content-type':'application/json'},
+            body: JSON.stringify( {
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                estiloServer: estilo
+            })
+        })
+        .then( function (resposta){
+            if(!resposta.ok){
+                console.log('Erro ao salvar resultado')
+            }
+            return resposta.json()
+        })
+        .then( function (res){
+            console.log(res.mensagem)
+            sessionStorage.ESTILO_ARTE = estilo
+        })
+        .catch( function (erro){
+            console.error(erro)
+        })
     }
 </script>

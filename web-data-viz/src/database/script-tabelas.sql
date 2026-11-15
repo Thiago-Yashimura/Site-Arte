@@ -16,4 +16,14 @@ CREATE TABLE usuario (
     senha VARCHAR(50)  NOT NULL
 );
 
+CREATE TABLE resultadoQuiz(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    estiloArte VARCHAR(20) NOT NULL,
+    fk_usuario INT,
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
+	dataResultado DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 SELECT * FROM usuario;
+SELECT * FROM resultadoQuiz;
+
