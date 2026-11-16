@@ -151,3 +151,100 @@ li:hover::after {
     cursor: pointer;
     transition: 0.3s ease;
 }
+
+/* Carrossel */
+.meus-desenhos h1{
+    padding: 2rem;
+}
+.meus-desenhos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carousel {
+  width: 70%;
+  max-width: var(--max-width);
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Container que "corta" a visualização fora do slide atual */
+.carousel__track-container {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 2 / 1; /* mantém proporção */
+}
+
+/* Track com slides em linha e transição suave */
+.carousel__track {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transition: transform 400ms ease;
+  will-change: transform;
+}
+
+/* Cada slide ocupa 100% da largura do container */
+.carousel__slide {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagem cobre o slide */
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Botões de navegação */
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--button-size);
+  height: var(--button-size);
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.carousel__button:focus { outline: 2px solid #2b7cff; }
+.carousel__button--prev { left: 12px; }
+.carousel__button--next { right: 12px; }
+
+/* Indicadores (bolinhas) */
+.carousel__nav {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12px;
+}
+.carousel__indicator {
+  width: var(--indicator-size);
+  height: var(--indicator-size);
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.carousel__indicator[aria-current="true"] {
+  background: #2b7cff;
+}
+.carousel__indicator:focus {
+  outline: 2px solid #2b7cff;
+}
