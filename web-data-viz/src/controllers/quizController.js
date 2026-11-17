@@ -9,7 +9,7 @@ function salvar(req,res){
             { mensagem: "ID inválido"} // Retorna um JSON com uma mensagem de erro
         )
     }
-
+// Com o model importando, consigo utilizar funções desse arquivo
     quizModel.salvarSql(idUsuario, estilo) // Função de model recebe o valor do id e estilo
         .then( function (resultado) {
             res.status(201).json({
