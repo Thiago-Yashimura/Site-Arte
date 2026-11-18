@@ -78,28 +78,18 @@
             </section>
             <hr>
                 <section class="meus-desenhos">
-                    
+
                     <h1>Meus desenhos</h1>
-                    <section class="carousel" aria-roledescription="carousel" aria-label="Galeria de imagens">
-                    <div class="carousel__track-container">
-                        <ul class="carousel__track">
-                        <li class="carousel__slide"><img src="https://picsum.photos/800/400?random=1" alt="Imagem 1"></li>
-                        <li class="carousel__slide"><img src="https://picsum.photos/800/400?random=2" alt="Imagem 2"></li>
-                        <li class="carousel__slide"><img src="https://picsum.photos/800/400?random=3" alt="Imagem 3"></li>
-                        <li class="carousel__slide"><img src="https://picsum.photos/800/400?random=4" alt="Imagem 4"></li>
-                        </ul>
-                    </div>
+                    <div class="carrossel">
+                            <ul class="carrossel-imgs">
+                                <li class="img selecionado"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw1"></li>
+                                <li class="img"><img src="./assets/imgs/premium_photo-1664197369827-378ba152d1af.avif" alt="draw2"></li>
+                                <li class="img"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw3"></li>
+                            </ul>
+                    <button class="avancar" onclick=""> > </button>
+                    <button class="voltar"> < </button>
+                </div>
 
-                    <button class="carousel__button carousel__button--prev" aria-label="Slide anterior">&lt;</button>
-                    <button class="carousel__button carousel__button--next" aria-label="Próximo slide">&gt;</button>
-
-                    <div class="carousel__nav" role="tablist" aria-label="Indicadores do carrossel">
-                        <button class="carousel__indicator" aria-label="Ir para slide 1"></button>
-                        <button class="carousel__indicator" aria-label="Ir para slide 2"></button>
-                        <button class="carousel__indicator" aria-label="Ir para slide 3"></button>
-                        <button class="carousel__indicator" aria-label="Ir para slide 4"></button>
-                    </div>
-                    </section>
                 </section>
 
                 <section class="importancia-desenho">
@@ -116,87 +106,46 @@
 </body>
 </html>
 <script>
-    const track = document.querySelector('.carousel__track');
-    const slides = document.querySelectorAll('.carousel__slide'); // NodeList
-    const prevButton = document.querySelector('.carousel__button--prev');
-    const nextButton = document.querySelector('.carousel__button--next');
-    const indicators = document.querySelectorAll('.carousel__indicator');
-    const carousel = document.querySelector('.carousel');
+    let desenhos = document.querySelectorAll(".img");
+    let botaoAvancar = document.querySelector(".avancar");
+    let botaoVoltar = document.querySelector(".voltar");
 
-    let currentIndex = 0;
-    let autoplayId = null;
-    const AUTOPLAY_MS = 4000;
+    let indice = 0;
 
-    // Vai para o slide indicado pelo índice
-    function goToSlide(index) {
-    // wrap-around simples
-    if (index < 0){
-        index = slides.length - 1
-    };
-    if (index >= slides.length) {
-        index = 0;
-        currentIndex = index;
-    }
+     function atualizarCarrossel() {
+    let total = desenhos.length;
+    let anterior = (indice - 1 + total) % total;
+    let proximo = (indice + 1) % total;
 
-    // Move a "track" com translateX (cada slide tem 100% da largura)
-    track.style.transform = 'translateX(' + (-100 * currentIndex) + '%)';
+    desenhos.forEach(function (imagem) {
+        imagem.classList.remove("selecionado", "esquerda", "direita");
+    });
 
-    // Atualiza indicadores (aria-current)
-    for (let i = 0; i < indicators.length; i++) {
-        if (i === currentIndex) {
-        indicators[i].setAttribute('aria-current', 'true');
+    desenhos[indice].classList.add("selecionado");
+    desenhos[anterior].classList.add("esquerda");
+    desenhos[proximo].classList.add("direita");
+}
+    
+
+    botaoAvancar.addEventListener("click", function () {
+        if (indice < desenhos.length - 1) {
+            indice++;
         } else {
-        indicators[i].removeAttribute('aria-current');
+            indice = 0;
         }
-    }
-    }
-
-    function nextSlide() { goToSlide(currentIndex + 1); }
-    function prevSlide() { goToSlide(currentIndex - 1); }
-
-    // Autoplay simples
-    function startAutoplay() {
-    stopAutoplay();
-    autoplayId = setInterval(nextSlide, AUTOPLAY_MS);
-    }
-    function stopAutoplay() {
-    if (autoplayId !== null) {
-        clearInterval(autoplayId);
-        autoplayId = null;
-    }
-    }
-
-    // Eventos
-    nextButton.addEventListener('click', function () {
-    nextSlide();
-    startAutoplay();
-    });
-    prevButton.addEventListener('click', function () {
-    prevSlide();
-    startAutoplay();
+        atualizarCarrossel();
     });
 
-    // Indicadores: each indicator goes para o slide correspondente
-    for (let i = 0; i < indicators.length; i++) {
-    indicators[i].addEventListener('click', (function(index) {
-        return function() {
-        goToSlide(index);
-        startAutoplay();
-        };
-    })(i));
-    }
-
-    // Pausar autoplay ao passar o mouse e retomar ao sair
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-
-    // Navegação por teclado (setas)
-    document.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') { prevSlide(); startAutoplay(); }
-    if (e.key === 'ArrowRight') { nextSlide(); startAutoplay(); }
+    botaoVoltar.addEventListener("click", function () {
+        if (indice > 0) {
+            indice--;
+        } else {
+            indice = desenhos.length - 1;
+        }
+        atualizarCarrossel();
     });
 
-    // Inicialização
-    goToSlide(0);
-    startAutoplay();
+   
+
+atualizarCarrossel();
 </script>
