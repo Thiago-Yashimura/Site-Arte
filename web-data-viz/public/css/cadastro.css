@@ -101,6 +101,14 @@ main section{
     cursor: pointer;
     width: 100%;
 }
+
+.form button:hover{
+    transition: 0.3s;
+    background-color: white;
+    border: 1px solid rgb(12,12,12);
+    color:rgb(12,12,12);
+}      
+
 .form h1{
     font-size: 4rem;
     

@@ -81,13 +81,13 @@
 
                     <h1>Meus desenhos</h1>
                     <div class="carrossel">
+                    <button class="voltar"> < </button>
                             <ul class="carrossel-imgs">
                                 <li class="img selecionado"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw1"></li>
                                 <li class="img"><img src="./assets/imgs/premium_photo-1664197369827-378ba152d1af.avif" alt="draw2"></li>
                                 <li class="img"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw3"></li>
                             </ul>
                     <button class="avancar" onclick=""> > </button>
-                    <button class="voltar"> < </button>
                 </div>
 
                 </section>
@@ -127,7 +127,7 @@
 }
     
 
-    botaoAvancar.addEventListener("click", function () {
+    botaoAvancar.addEventListener("click", () => {
         if (indice < desenhos.length - 1) {
             indice++;
         } else {
