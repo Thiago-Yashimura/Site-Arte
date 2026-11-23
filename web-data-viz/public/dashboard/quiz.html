@@ -30,9 +30,8 @@
           <p>Seu espaço</p>
         </div>
             <div class="menu-buttons">
-                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>
-                <button class="btn-menu"><i class="fa-regular fa-images fa-lg"></i>Desenhos</button>
-                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>    
+                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i><a href="./quiz.html" style="color:rgb(12,12,12);text-decoration: none;">Quiz</a></button>
+                <button class="btn-menu"><i class="fa-solid fa-chart-column"></i>Dashboard</button>
             </div>
         </div>
 
@@ -43,27 +42,23 @@
 
         </section>
         <section class="conteudo">
-            <h1>Bem-vindo de volta <span id="b_usuario2"></span></h1>
-            <p>Bem-vindo, artista! Confira os resultados do quiz.</p>
+            <h1>Quiz<span id="b_usuario2"></span></h1>
+            <p>Descubra qual estilo de desenho combina mais com você.</p>
 
         <!--Quiz -->  
         <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
+            
+                
+               
         </div>
 
         <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+
+             <span id="msgFinal" class="width-fit-content"></span>
+             <img id="imagemResultado" src="" alt="Estilo de desenho">
 
             <div id="infoQuestao" class="padding-8">
                 <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
@@ -80,24 +75,28 @@
 
             <div id="opcoes" class="flex-colunar padding-8">
                 <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="0" />
                     <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
                 </span>
                 <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="1" />
                     <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
                 </span>
                 <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="2" />
                     <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
                 </span>
                 <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="3" />
                     <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                </span>
+                <span>
+                    <input type="radio" id="quintaOpcao" name="option" class="radio" value="4" />
+                    <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
                 </span>
             </div>
 
-            <div id="botoes" class="flex-colunar padding-8">
+            <div id="botoes" class="flex-colunar">
                 <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
@@ -114,65 +113,78 @@
 
 </html>
 <script>
-    const listaDeQuestoes = [
+    const perguntas = [
 
     {
-        pergunta: "Qual tipo de desenho você prefere?",
+        pergunta: "O que você mais gosta de desenhar?",
 
-        alternativaA: "Traços japoneses",
-        alternativaB: "Formas geométricas",
-        alternativaC: "Aparência de fotografia",
-        alternativaD: "Desenhos com pixels",
-
-        estilos: {
-            alternativaA: "Mangá",
-            alternativaB: "Cubismo",
-            alternativaC: "Realismo",
-            alternativaD: "Pixel Art"
-        }
+        opcoes: [
+            { texto: "Personagens de anime", estilo: "manga" },
+            { texto: "Pessoas e rostos realistas", estilo: "realista" },
+            { texto: "Personagens em pixels", estilo: "pixel" },
+            { texto: "Personagens engraçados", estilo: "cartoon" },
+            { texto: "Ícones, logotipos e formas limpas", estilo: "vector" }
+        ]
     },
 
     {
-        pergunta: "Qual cenário você prefere desenhar?",
+        pergunta: "Qual visual você prefere?",
 
-        alternativaA: "Personagens de anime",
-        alternativaB: "Construções geométricas",
-        alternativaC: "Paisagens realistas",
-        alternativaD: "Cenários de jogos antigos",
-
-        estilos: {
-            alternativaA: "Mangá",
-            alternativaB: "Cubismo",
-            alternativaC: "Realismo",
-            alternativaD: "Pixel Art"
-        }
+        opcoes: [
+            { texto: "Olhos grandes e expressivos", estilo: "manga" },
+            { texto: "Muitos detalhes e sombras", estilo: "realista" },
+            { texto: "Visual retrô de videogames", estilo: "pixel" },
+            { texto: "Cores fortes e exageradas", estilo: "cartoon" },
+            { texto: "Traços perfeitos, simétricos e sem serrilhado", estilo: "vector" }
+        ]
     },
 
     {
-        pergunta: "Qual técnica mais chama sua atenção?",
+        pergunta: "Como você prefere desenhar?",
 
-        alternativaA: "Expressões e movimentos",
-        alternativaB: "Formas e perspectivas",
-        alternativaC: "Luz e sombras",
-        alternativaD: "Pixels e pequenos blocos",
+        opcoes: [
+            { texto: "Criando histórias e personagens", estilo: "manga" },
+            { texto: "Tentando reproduzir a realidade", estilo: "realista" },
+            { texto: "Trabalhando com pequenos quadrados", estilo: "pixel" },
+            { texto: "Fazendo desenhos descontraídos", estilo: "cartoon" },
+            { texto: "Ajustando curvas, pontos e formas geométricas", estilo: "vector" }
+        ]
+    },
 
-        estilos: {
-            alternativaA: "Mangá",
-            alternativaB: "Cubismo",
-            alternativaC: "Realismo",
-            alternativaD: "Pixel Art"
-        }
+    {
+        pergunta: "Qual ferramenta ou técnica mais chama sua atenção?",
+
+        opcoes: [
+            { texto: "Canetas de nanquim e marcadores", estilo: "manga" },
+            { texto: "Lápis de grafite e sombreado suave", estilo: "realista" },
+            { texto: "Grades e paletas de cores limitadas", estilo: "pixel" },
+            { texto: "Traços livres, rápidos e dinâmicos", estilo: "cartoon" },
+            { texto: "Formas geométricas e curvas precisas", estilo: "vector" }
+        ]
+    },
+
+    {
+        pergunta: "Onde você gostaria de ver sua arte aplicada?",
+
+        opcoes: [
+            { texto: "Na capa de um mangá ou animação", estilo: "manga" },
+            { texto: "Em um retrato fiel ou quadro", estilo: "realista" },
+            { texto: "Em um jogo indie estilo clássico", estilo: "pixel" },
+            { texto: "Em uma tirinha ou desenho animado", estilo: "cartoon" },
+            { texto: "Em logotipos, ícones ou ilustrações digitais", estilo: "vector" }
+        ]
     }
-]
+];
 
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
+    let quantidadeDeQuestoes = perguntas.length
     let pontuacaoEstilos = {
-        "Mangá": 0,
-        "Cubismo": 0,
-        "Realismo": 0,
-        "Pixel Art": 0
+        "manga": 0,
+        "realista": 0,
+        "pixel": 0,
+        "cartoon": 0,
+        "vector": 0
     };
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
@@ -198,16 +210,18 @@
 
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true)
-        const questaoAtual = listaDeQuestoes[index]
+        const questaoAtual = perguntas[index]
         numeroDaQuestaoAtual = index
         console.log("questaoAtual")
         console.log(questaoAtual)
         document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.opcoes[0].texto;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.opcoes[1].texto;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.opcoes[2].texto;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.opcoes[3].texto;
+        document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.opcoes[4].texto;
     }
 
     function submeter() {
@@ -240,6 +254,7 @@
         segundaOpcao.disabled = opcaoEscolhida
         terceiraOpcao.disabled = opcaoEscolhida
         quartaOpcao.disabled = opcaoEscolhida
+        quintaOpcao.disabled = opcaoEscolhida;
 
     }
 
@@ -271,24 +286,20 @@
 
     function contabilizarResposta() {
 
-    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+    const questaoAtual = perguntas[numeroDaQuestaoAtual];
 
     const options = document.getElementsByName("option");
 
-    let respostaSelecionada = null;
+    let indiceSelecionado = null;
 
     options.forEach((option) => {
-
         if (option.checked) {
-            respostaSelecionada = option.value;
+            indiceSelecionado = option.value; 
         }
-
     });
 
-    // Descobre qual estilo pertence à alternativa escolhida
-    let estiloEscolhido = questaoAtual.estilos[respostaSelecionada];
+    let estiloEscolhido = questaoAtual.opcoes[indiceSelecionado].estilo;
 
-    // Adiciona um ponto ao estilo
     pontuacaoEstilos[estiloEscolhido]++;
 
     console.log(pontuacaoEstilos);
@@ -320,8 +331,28 @@
         estilo => pontuacaoEstilos[estilo] === maiorPontuacao
     );
 
+    const nomesFormatados = {
+        "manga": "Anime / Mangá",
+        "realista": "Realismo",
+        "pixel": "Pixel Art",
+        "cartoon": "Cartoon",
+        "vector": "Vector Art"
+    };
+
     document.getElementById("msgFinal").innerHTML =
-        "Seu estilo artístico é: " + estiloVencedor;
+        "Seu estilo artístico é: " + nomesFormatados[estiloVencedor];
+    
+        const imagens = {
+        manga: "../assets/imgs/manga.jpg",
+        realista: "../assets/imgs/realismo.jpg",
+        pixel: "../assets/imgs/pixel-art.png",
+        cartoon: "../assets/imgs/cartoon.avif",
+        vector: "../assets/imgs/vector.avif"
+    };
+
+    let img = document.getElementById("imagemResultado")
+    img.style.display = 'block'
+    img.src = imagens[estiloVencedor];
 
     btnProx.disabled = true;
     btnSubmeter.disabled = true;

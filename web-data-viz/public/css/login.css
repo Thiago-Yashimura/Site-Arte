@@ -36,7 +36,7 @@ a{
     letter-spacing: 3px;
 }
 .background{
-    background-image: url('../assets/imgs/birmingham-museums-trust-KfRUve5NtO8-unsplash.jpg');
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) ,url('../assets/imgs/2c970821348712f607fd2b5c0d17aaed.jpg');
     background-size: cover; 
     height: 100vh;
     padding: 50px;

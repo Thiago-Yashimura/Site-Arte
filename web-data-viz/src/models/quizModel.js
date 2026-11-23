@@ -2,7 +2,7 @@ var database = require("../database/config") // importa o arquivo do banco confi
 
 function salvarSql(idUsuario, estilo){
     var instrucaoSql = `
-        INSERT INTO resultadoQuiz ( fk_usuario, estiloArte ) VALUES (${idUsuario}, '${estilo}') ` // Utilizando prepared statements
+        INSERT INTO resultadoQuiz ( fk_usuario, estiloArte ) VALUES (${idUsuario}, '${estilo}') ` 
     console.log('Executando instrução SQL: ' + instrucaoSql)
     return database.executar(instrucaoSql)
 }

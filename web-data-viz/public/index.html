@@ -15,93 +15,156 @@
 <body>
     <main>
         <nav class="navbar">
-            <div class="site-title">drawing.</div>
+            <div class="site-title">
+                <i class="fa-solid fa-square-pen"></i>
+                drawing.</div>
         <ul>
             <li><a>Home</a></li>  
             <li><a>Sobre</a></li>  
             <li><a>Contato</a></li>   
             <li><a>|</a></li> 
-            <button class="btn-simples">Entrar</button>
-            <button class="btn">Cadastre-se</button>
+            <button class="btn-simples"><a href="./login.html" style="color: rgb(12,12,12);">Entrar</a></button>
+            <button class="btn"><a href="./cadastro.html" style="text-decoration: none;color: white;">Cadastre-se</a></button>
         </ul> 
         </nav>
 
-            <section class="background">
-                <div class="background-content">
-                    <span class="badge">Entenda os fundamentos do desenho</span>
-                    <h1 class="title-background">
-                        A arte de Desenhar 
-                    </h1>
-                    <p>Aprenda os fundamentos e descubra seu jeito de ver o mundo. 
-                        Sem pressa, sem precisar de um dom.</p>
-                    <button class="more-button">
-                        Conheça mais sobre desenho
-                        <i class="fa-solid fa-pencil"></i>
-                    </button>
-                </div>
-            </section>
+        <section class="background">
+            <div class="background-content">
+                <span class="badge">Entenda os fundamentos do desenho</span>
+                <h1 class="title-background">
+                    A arte de Desenhar 
+                </h1>
+                <p>Aprenda os fundamentos, no seu tempo, e descubra que desenhar não é dom: é algo que qualquer um consegue aprender.</p>
+                <button class="more-button">
+                    Conheça mais sobre desenho
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+            </div>
+        </section>
+        
+        <section class="fundamentos">
+            <span>Por onde começar?</span>
+            <h1 class="fundamentos-title">Fundamentos do Desenho</h1>
             
-            <section class="fundamentos">
-                <span>Por onde começar?</span>
-                <h1 class="fundamentos-title">Fundamentos do Desenho</h1>
-                
-                <div class="fundamentos-container">
-                    <div class="card-fundamento">
-                        <div style="display: flex; justify-content: space-between;align-items: center;">
-                            <i class="fa-solid fa-pen-nib fa-xl"></i> 
-                            <span>01</span>  
-                        </div>
-                        
-                        <h2>Linha</h2>
-                        <p>Treine os principais tipos de linha para criar qualquer desenho</p>
+            <div class="fundamentos-container">
+                <div class="card-fundamento">
+                    <div style="display: flex; justify-content: space-between;align-items: center;">
+                        <i class="fa-solid fa-pen-nib fa-xl"></i> 
+                        <span>01</span>  
                     </div>
-
-                    <div class="card-fundamento">
-                        <i class="fa-solid fa-shapes fa-xl"></i>
-                        <h2>Forma</h2>
-                        <p>Qualquer desenho pode ser construído utilizando formas simples.</p>
-                    </div>
-
-                    <div class="card-fundamento">
-                        <i class="fa-solid fa-lightbulb fa-xl"></i>
-                        <h2>Luz e Sombra</h2>
-                        <p>Perceba de onde vem a luz e como ela revela o volume.</p>
-                    </div>
-
-                    <div class="card-fundamento">
-                        <i class="fa-solid fa-cubes fa-xl"></i>
-
-                        <h2>Perspectiva</h2>
-                        <p>Entenda como as formas ocupam o espaço e ganham profundidade.</p>
-                    </div>
+                    
+                    <h2>Linha</h2>
+                    <p>Treine os principais tipos de linha para criar qualquer desenho</p>
                 </div>
-            </section>
+
+                <div class="card-fundamento">
+                    <i class="fa-solid fa-shapes fa-xl"></i>
+                    <h2>Forma</h2>
+                    <p>Qualquer desenho pode ser construído utilizando formas simples.</p>
+                </div>
+
+                <div class="card-fundamento">
+                    <i class="fa-solid fa-lightbulb fa-xl"></i>
+                    <h2>Luz e Sombra</h2>
+                    <p>Perceba de onde vem a luz e como ela revela o volume.</p>
+                </div>
+
+                <div class="card-fundamento">
+                    <i class="fa-solid fa-cubes fa-xl"></i>
+
+                    <h2>Perspectiva</h2>
+                    <p>Entenda como as formas ocupam o espaço e ganham profundidade.</p>
+                </div>
+            </div>
+        </section>
             <hr>
-                <section class="meus-desenhos">
+        <section class="meus-desenhos">
 
-                    <h1>Meus desenhos</h1>
-                    <div class="carrossel">
-                    <button class="voltar"> < </button>
-                            <ul class="carrossel-imgs">
-                                <li class="img selecionado"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw1"></li>
-                                <li class="img"><img src="./assets/imgs/premium_photo-1664197369827-378ba152d1af.avif" alt="draw2"></li>
-                                <li class="img"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw3"></li>
-                            </ul>
-                    <button class="avancar" onclick=""> > </button>
+            <h1>Meus desenhos</h1>
+            <div class="carrossel">
+            <button class="voltar"> < </button>
+                    <ul class="carrossel-imgs">
+                        <li class="img selecionado"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw1"></li>
+                        <li class="img"><img src="./assets/imgs/premium_photo-1664197369827-378ba152d1af.avif" alt="draw2"></li>
+                        <li class="img"><img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="draw3"></li>
+                        <li class="img"><img src="./assets/imgs/a08b53731da4ea5f3017eab21f83b16e.jpg" alt="draw3"></li>
+                    </ul>
+            <button class="avancar" onclick=""> > </button>
+        </div>
+
+        </section>
+
+        <section class="importancia-desenho">
+            
+                <div class="importancia-content">
+                    
+                    <img src="./assets/imgs/505e92dbb66364175805967b14be7be9.jpg" alt="">
+                    <div class="importancia-header">
+                    <span>Minha História</span>
+                    <h1>Por que desenho é importante para mim</h1>
+                    <p>
+                        O desenho faz parte da minha vida desde criança. Eu copiava tudo o que assistia, fossem desenhos, filmes ou jogos, movido pelo sonho de que um dia seria capaz de criar meus próprios personagens.
+                        <br>
+                        Com o tempo, o desenho se tornou muito mais do que um hobby: foi ele que me ensinou a aprender. Descobri que toda área, seja um hobby ou uma matéria, tem seus fundamentos, e que só evoluímos de verdade quando dominamos a base.
+                    </p>
                 </div>
+                    
+                </div>
+        </section>
 
-                </section>
+        <section class="como-comecar">
+            <img src="./assets/imgs/kelly-sikkema-iiaUVel-cJE-unsplash.jpg" alt="">
+            <div class="como-comecar-content">
+                <span style="color:rgb(90, 90, 90);text-transform: uppercase;">Iniciando no desenho</span>
+                <h1>Como começar</h1>
+                <p class="p-header">
+                    Qualquer pessoa pode aprender a desenhar.
+                    Você só precisa dar o primeiro traço.
+                </p>
+                <div class="passos">
+                    <span>01</span>
+                    <div>
+                        <h2>Separe o básico</h2>
+                        <span>Papel, um lápis e uma borracha bastam. Use o que você já tem.</span>
+                    </div>
+                </div>
+                    <hr>
+                <div class="passos">
+                    <span>02</span>
+                    <div>
+                        <h2>Escolha algo simples</h2>
+                        <span>Uma caneca, uma folha ou qualquer coisa que você goste. Observe antes de riscar.</span>
+                    </div>
+                </div>
+                 <hr>
+                    <div class="passos">
+                    <span>03</span>
+                    <div>
+                        <h2>Desenvolva o hábito</h2>
+                        <span>Dez minutos diários rendem mais do que uma longa sessão por mês. Mantenha um caderno só para rabiscos e não tenha medo de errar.</span>
+                    </div>
+                </div>
+                <hr>
+                <p style="color: rgb(90, 90, 90); margin-top: 20px;"><b style="color:rgb(12,12,12);">Lembre-se:</b> Aprender a desenhar não precisa ser maçante. Comece desenhando algo de que você goste!</p>
+               
+                
+            </div>
+        </section>
 
-                <section class="importancia-desenho">
-                        <span>Minha História</span>
-                        <h1>Por que desenho é importante para mim</h1>
-                        <div>
-                            <img src="./assets/imgs/photo-1569091791842-7cfb64e04797.avif" alt="">
-                            <p>
-
-                            </p>
-                        </div>
-                </section>
+        <footer>
+                <p style="font-size:20px;"><i class="fa-solid fa-square-pen"></i> drawing.</p>
+                <div style="display: flex;flex-direction: column; gap: 5px;">
+                    <p >© 2026 drawing.</p>
+                    <p>Desenvolvido por <a></a>Thiago Yashimura</p>
+                    <a
+                    target="_blank"
+                    style="color: white; text-decoration: none;"
+                     href="https://github.com/Thiago-Yashimura">
+                        <i class="fa-brands fa-github"></i> <span style="text-decoration: underline;">Github</span></a>
+                
+                </div>
+              
+        </footer>
     </main>
 </body>
 </html>

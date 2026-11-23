@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
    
 </head>
-<body>
+<body onload="validarSessao()">
     <main>
         <section class="menu-lateral">
         <div class="menu-content">
@@ -27,9 +27,9 @@
         </div>
             
             <div class="menu-buttons">
-                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>
-                <button class="btn-menu"><i class="fa-regular fa-images fa-lg"></i>Desenhos</button>
-                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i>Quiz</button>    
+                <button class="btn-menu"><i class="fa-regular fa-clipboard fa-lg"></i><a href="./quiz.html" style="color:rgb(12,12,12);text-decoration: none;">Quiz</a></button>
+                <button class="btn-menu"><i class="fa-solid fa-chart-column"></i>Dashboard</button>
+                 
             </div>
         </div>
 
@@ -41,12 +41,36 @@
         </section>
         <section class="conteudo">
             <h1>Bem-vindo de volta <span id="b_usuario2"></span></h1>
-            <p>Bem-vindo, artista! Confira os resultados do quiz.</p>
-            
-            <div class="grafico">
-                <canvas id="dashboard-estilos"></canvas>
-            </div>
+            <p style="margin-bottom: 2rem;">Veja como a comunidade está se expressando.</p>
+            <!--KPIs-->
+            <section class="kpi-container">
 
+                <div class="kpi-card">
+                  <span>Seu resultado</span>
+                  <p class="estiloUsuario"></p>
+                  <span> </span>
+                </div>
+
+                <div class="kpi-card">
+                  <span>Artistas na comunidade</span>
+                  <p class="usuarios"></p>
+                  <span> </span>
+                </div>
+
+                <div class="kpi-card">
+                  <span>Estilo mais popular</span>
+                  <p class="estiloPopular"></p>
+                  <span> </span>
+                </div>
+
+              </section>
+              <div class="grafico">
+                <div>
+                  <h1 style="font-size: 1.2rem;">Estilos mais populares</h1>
+                </div>
+                  <canvas id="dashboard-estilos"></canvas>
+              </div>
+            
         </section>
     </main>
 </body>
@@ -54,23 +78,71 @@
 <script>
   const ctx = document.getElementById('dashboard-estilos');
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Anime', 'Realismo', 'Pixel Art', 'Cartoon', 'Graffiti', 'Caricatura'],
-      datasets: [{
-        label: 'Estilos mais votados',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+  const graficoEstilos = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: [],
+          datasets: [{
+              label: 'Estilos mais votados',
+              data: [],
+              // backgroundColor: 'rgb(12, 12, 12)', // Cor das barras
+              // borderColor: 'rgb(12, 12, 12)', // Cor das bordas
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: true, // Torna o gráfico responsivo
+        maintainAspectRatio: false,
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  max: 20
+              }
+          }
       }
-    }
   });
+
+  function buscarDados(){
+    let idUsuario = sessionStorage.getItem("ID_USUARIO")
+    console.log(idUsuario)
+    fetch(`/dashboard/dados/${idUsuario}`)
+    .then(function (resposta){
+      if(resposta.ok){
+        return resposta.json() // Recebe a resposta do servidor e retorna o obj em JS
+      }
+      else{
+        throw new Error('Erro ao buscar dados da dashboard! Status: ' + resposta.status)
+      }
+    }).then( function(resp){ // Com a resposta ja convertida para um obj JS, atualizo o gráfico
+      let estiloUsuario = document.querySelector('.estiloUsuario')
+      let totalUsuarios = document.querySelector('.usuarios')
+      let estiloPopular = document.querySelector('.estiloPopular')
+
+      estiloUsuario.innerHTML = resp.estiloDoUsuario
+      totalUsuarios.innerHTML = resp.totalUsuarios
+      estiloPopular.innerHTML = resp.estiloMaisPopular
+      // Gráfico
+       graficoEstilos.data.labels = resp.totalUsuariosEstilos.map(function (item) { // Preenche o label com um estilo
+                console.log(item.estiloArte)
+                return item.estiloArte;
+            });
+
+            // Percorre o array e pega a quantidade de votos
+            graficoEstilos.data.datasets[0].data = resp.totalUsuariosEstilos.map(function (item) { // Preenche a quantidade de cada estilo
+                return item.quantidade;
+            });
+
+            // Atualiza o gráfico
+            graficoEstilos.update();
+      console.log(resp)
+
+    })
+    
+    .catch( function (erro){
+      console.error("Falha na requisição GET:", erro);
+    })
+  }
+
+  buscarDados()
 </script>
  

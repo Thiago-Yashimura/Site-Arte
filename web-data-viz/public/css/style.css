@@ -97,12 +97,10 @@ nav li:hover::after {
     justify-content: end;
 }
 
-.background-content{
-}
 .background p{
     color: var(--cor-fonte);
     font-size: 20px;
-    width: 400px;
+    width: 700px;
 }
 .title-background{
     margin-top: 15px;
@@ -234,4 +232,74 @@ nav li:hover::after {
     transform: translateX(140px) scale(0.8);
     opacity: 0.6;
     z-index: 2;
+}
+/* Seção importância do desenho */
+.importancia-desenho{
+    margin-top: 5rem;
+    background-color:rgba(245, 245, 243, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+.importancia-desenho img{
+   height: 350px;
+   width: 45%;
+   border-radius: 15px;
+   margin-right: 3rem;
+}
+.importancia-header h1{
+    margin-bottom: 2rem;
+}
+.importancia-header p{
+    height: auto;
+    width: 500px;
+}
+.importancia-header span{
+    text-transform: uppercase;
+    color: rgb(107, 107, 107) ;
+}
+.importancia-content{
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Seção como começar */
+.como-comecar{
+    padding: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.p-header{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+}
+.como-comecar img{
+    width: 33%;
+}
+.como-comecar-content{
+    width: 650px
+}
+.passos{
+    display: flex;
+    gap: 20px;
+    padding: 2rem;
+    width: 600px;
+}
+.passos h2{
+    margin-bottom: 0.5rem;
+}
+.passos span{
+    color: rgb(90, 90, 90);
+}
+
+/* Footer */
+footer{
+    background-color: var(--cor-fonte);
+    color: white;
+    display: flex;
+    padding: 5rem 3rem;
+    justify-content: space-between;
 }

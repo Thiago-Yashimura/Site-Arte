@@ -3,11 +3,8 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.get("/dados", function (req, res) {
-    usuarioController.buscarDados(req, res);
+router.get("/dados/:id", function (req, res) {
+    dashboardController.buscarDados(req, res);
 })
-
-
 
 module.exports = router;
