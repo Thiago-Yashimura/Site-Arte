@@ -135,7 +135,12 @@ i{
     border-radius: 10px;
     height: 400px;
     object-fit: cover;
+    display: none;
 }
+.msgFinal{
+    text-align: center;
+}
+
 .flex-colunar {
     display: flex;
     flex-direction: column;

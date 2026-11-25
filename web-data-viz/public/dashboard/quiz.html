@@ -21,7 +21,7 @@
 </head>
 
 
-<body onload="onloadEsconder()">
+<body onload="onloadEsconder(), validarSessao()">
     <main>
         <section class="menu-lateral">
         <div class="menu-content">
@@ -38,11 +38,12 @@
             <div class="menu-container">
                 <hr>
             <p class="username">Olá <span id="b_usuario"></span></p>
+            <div> <span>Sair</span> <i class="fa-solid fa-arrow-right-from-bracket"></i></div>
         </div>
 
         </section>
         <section class="conteudo">
-            <h1>Quiz<span id="b_usuario2"></span></h1>
+            <h1>Quiz</h1>
             <p>Descubra qual estilo de desenho combina mais com você.</p>
 
         <!--Quiz -->  
@@ -51,8 +52,6 @@
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
             
-                
-               
         </div>
 
         <div id="jogo" class="width-fit-content flex-colunar border-secondary">
@@ -340,7 +339,7 @@
     };
 
     document.getElementById("msgFinal").innerHTML =
-        "Seu estilo artístico é: " + nomesFormatados[estiloVencedor];
+        `Seu estilo artístico é:<br> <b>${nomesFormatados[estiloVencedor]}</b> `
     
         const imagens = {
         manga: "../assets/imgs/manga.jpg",
@@ -353,6 +352,9 @@
     let img = document.getElementById("imagemResultado")
     img.style.display = 'block'
     img.src = imagens[estiloVencedor];
+
+    
+
 
     btnProx.disabled = true;
     btnSubmeter.disabled = true;

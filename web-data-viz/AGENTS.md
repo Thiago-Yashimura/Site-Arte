@@ -3,7 +3,7 @@
 ## Visão geral
 web-data-viz é um projeto de primeiro semestre para criar aplicações web que recebem, armazenam, consultam e exibem dados, usando uma API conectada a um banco de dados.
 
-O tema atual do projeto é um site sobre arte, ele também possui um quiz de estilos de arte (tabelas `usuario` e `resultadoQuiz`), com dashboard de resultados.
+O tema atual do projeto é um site sobre arte, ele também possui um quiz de estilos de arte (tabelas `usuario` e `resultadoQuiz`) e uma dashboard de resultados.
 
 ## Tecnologias
 - Frontend: HTML, CSS, JavaScript
