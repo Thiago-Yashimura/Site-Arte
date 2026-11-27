@@ -120,7 +120,7 @@ main section{
 .mensagem{
     background-color: green;
     padding: 10px 20px;
-    color: rgb(149, 255, 149);
+    color:  rgb(162, 255, 162);
     border-radius: 5px;
     display: flex;
     justify-content: center;

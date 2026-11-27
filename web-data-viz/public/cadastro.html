@@ -41,17 +41,24 @@
                     <label for="senha">Confirmar Senha</label>
                     <input type="text" name="senha" id="confirmarSenha">
 
+                    <div class="mensagem">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Usuário logado com sucesso</span> 
+                    </div>
+
                     <button class="btn" onclick="cadastrar()">Cadastrar</button>
+                    
+                    
+
                     </div>
                 </section>
             </main>
             
-
-
 </body>
 </html>
 
     <script>
+        let msg = document.querySelector('.mensagem')
         function cadastrar(){
             let nomeUser = nome.value
             let emailUser = email.value
@@ -86,8 +93,19 @@
                         senhaServer: senhaUser
                     }
                 )
-            }).then( resposta => resposta.json())
-            .then( res => console.log(res))
-                    
+            }).then( resposta => {
+                if(resposta.ok){
+                    setTimeout(() => msg.style.display = 'block', 1500)
+                    setTimeout(function () {
+                        window.location = "./login.html";
+                    }, 2500);
+                }
+                return resposta.json()
+            }
+        )
+            .then( res => {
+                console.log(res)
+        })
+            .catch( erro => console.error(erro))        
         }
     </script>
